@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "strictPropertyInitialization": false,
     "target": "es2017",
     "lib": [
       "dom",
