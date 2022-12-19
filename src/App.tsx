@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import './App.css';
-import { Plant, Maturity } from './plant.entity'
+import { Plant, Maturity, FlowerStatus } from './plant.entity'
 
 export default function App() {
   const [allPlants, setAllPlants] = useState<Plant[]>([]);
@@ -26,6 +26,8 @@ export default function App() {
       <td>{plant.id}</td>
       <td>{plant.name}</td>
       <td>{Maturity[plant.maturity]}</td>
+      <td>{FlowerStatus[plant.flowerStatus]}</td>
+      <td>{plant.flowering ? 'Yes' : 'No'}</td>
     </tr>
   );
 
@@ -41,6 +43,8 @@ export default function App() {
             <th>ID</th>
             <th>Name</th>
             <th>Maturity</th>
+            <th>Flower status</th>
+            <th>Flowering</th>
           </tr>
           {plants}
         </table>
