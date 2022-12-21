@@ -63,8 +63,8 @@ export default function App() {
   const seeds = allSeeds.map(seed =>
     <tr>
       <td>{seed.id}</td>
-      <td>{seed.name}</td>
-      <td>{seed.flowering ? 'Yes' : 'No'}</td>
+      <td>{seed.genes.name}</td>
+      <td>{seed.genes.flowering ? 'Yes' : 'No'}</td>
       <td className='clickable' onClick={async () => plantSeed(seed.id)}>PLANT</td>
       <td className='clickableRed' onClick={async () => deleteSeed(seed.id)}>DESTROY</td>
     </tr>

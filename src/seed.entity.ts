@@ -1,5 +1,6 @@
+import { Genes } from "./genes.entity";
+
 export class Seed {
   id: number;
-  name: string;
-  flowering: boolean;
+  genes: Genes;
 }
