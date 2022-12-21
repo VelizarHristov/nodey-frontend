@@ -34,6 +34,16 @@ export default function App() {
     getSeeds();
   }
 
+  async function deletePlant(id: number) {
+    await fetch(baseUrl + "/plants/" + id, { method: "DELETE" });
+    getPlants();
+  }
+
+  async function deleteSeed(id: number) {
+    await fetch(baseUrl + "/seeds/" + id, { method: "DELETE" });
+    getSeeds();
+  }
+
   useEffect(() => {
     getPlants();
     getSeeds();
@@ -46,6 +56,7 @@ export default function App() {
       <td>{Maturity[plant.maturity]}</td>
       <td>{FlowerStatus[plant.flowerStatus]}</td>
       <td>{plant.flowering ? 'Yes' : 'No'}</td>
+      <td className='clickableRed' onClick={async () => deletePlant(plant.id)}>DESTROY</td>
     </tr>
   );
 
@@ -55,6 +66,7 @@ export default function App() {
       <td>{seed.name}</td>
       <td>{seed.flowering ? 'Yes' : 'No'}</td>
       <td className='clickable' onClick={async () => plantSeed(seed.id)}>PLANT</td>
+      <td className='clickableRed' onClick={async () => deleteSeed(seed.id)}>DESTROY</td>
     </tr>
   );
 
@@ -72,6 +84,7 @@ export default function App() {
             <th>Maturity</th>
             <th>Flower status</th>
             <th>Flowering</th>
+            <th />
           </tr>
           {plants}
         </table>
@@ -83,6 +96,7 @@ export default function App() {
             <th>ID</th>
             <th>Name</th>
             <th>Flowering</th>
+            <th />
             <th />
           </tr>
           {seeds}
