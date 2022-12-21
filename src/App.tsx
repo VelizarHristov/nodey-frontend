@@ -5,29 +5,31 @@ import { Plant, Maturity, FlowerStatus } from './plant.entity'
 import { Seed } from './seed.entity'
 
 export default function App() {
+  const baseUrl = "http://127.0.0.1:5000";
+
   const [allPlants, setAllPlants] = useState<Plant[]>([]);
   const [allSeeds, setAllSeeds] = useState<Seed[]>([]);
 
   async function getPlants(): Promise<void> {
-    const res = await fetch("http://127.0.0.1:5000/plants");
+    const res = await fetch(baseUrl + "/plants");
     const json = await res.json();
     setAllPlants(json);
   }
 
   async function getSeeds(): Promise<void> {
-    const res = await fetch("http://127.0.0.1:5000/seeds");
+    const res = await fetch(baseUrl + "/seeds");
     const json = await res.json();
     setAllSeeds(json);
   }
 
   async function postTick() {
-    await fetch("http://127.0.0.1:5000/tick", { method: "POST" });
+    await fetch(baseUrl + "/tick", { method: "POST" });
     getPlants();
     getSeeds();
   }
 
   async function plantSeed(id: number) {
-    await fetch("http://127.0.0.1:5000/plants/" + id, { method: "POST" });
+    await fetch(baseUrl + "/plants/" + id, { method: "POST" });
     getPlants();
     getSeeds();
   }
