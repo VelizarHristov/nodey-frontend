@@ -26,6 +26,12 @@ export default function App() {
     getSeeds();
   }
 
+  async function plantSeed(id: number) {
+    await fetch("http://127.0.0.1:5000/plants/" + id, { method: "POST" });
+    getPlants();
+    getSeeds();
+  }
+
   useEffect(() => {
     getPlants();
     getSeeds();
@@ -46,6 +52,7 @@ export default function App() {
       <td>{seed.id}</td>
       <td>{seed.name}</td>
       <td>{seed.flowering ? 'Yes' : 'No'}</td>
+      <td className='clickable' onClick={async () => plantSeed(seed.id)}>PLANT</td>
     </tr>
   );
 
@@ -74,6 +81,7 @@ export default function App() {
             <th>ID</th>
             <th>Name</th>
             <th>Flowering</th>
+            <th />
           </tr>
           {seeds}
         </table>
